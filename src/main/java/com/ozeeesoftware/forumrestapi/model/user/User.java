@@ -30,7 +30,7 @@ public class User extends BaseModel {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private List<Role> roles;
+    private Role role;
 
     @OneToOne
     private List<Post> posts;

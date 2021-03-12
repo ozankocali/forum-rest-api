@@ -1,17 +1,14 @@
 package com.ozeeesoftware.forumrestapi.config;
 
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "file")
+@Data
 public class ImageStorageProperties {
 
     private String uploadDir;
 
-    public ImageStorageProperties() {
-    }
 
-    public ImageStorageProperties(String uploadDir) {
-        this.uploadDir = uploadDir;
-    }
 }

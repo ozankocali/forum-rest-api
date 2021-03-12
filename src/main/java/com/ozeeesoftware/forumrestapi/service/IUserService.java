@@ -9,5 +9,6 @@ public interface IUserService {
     ResponseEntity getAllUsers();
     ResponseEntity getUserById(long userId);
     ResponseEntity deleteUserById(long userId);
+    ResponseEntity updateUser(User user);
 
 }
