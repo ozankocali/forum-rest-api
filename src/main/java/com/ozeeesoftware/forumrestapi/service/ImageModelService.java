@@ -3,7 +3,10 @@ package com.ozeeesoftware.forumrestapi.service;
 import com.ozeeesoftware.forumrestapi.config.ImageStorageProperties;
 import com.ozeeesoftware.forumrestapi.exception.FileNotFoundException;
 import com.ozeeesoftware.forumrestapi.model.ImageModel;
+import com.ozeeesoftware.forumrestapi.model.user.User;
 import com.ozeeesoftware.forumrestapi.repository.ImageModelRepository;
+import com.ozeeesoftware.forumrestapi.repository.PostRepository;
+import com.ozeeesoftware.forumrestapi.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -22,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -33,6 +37,12 @@ public class ImageModelService {
 
     @Autowired
     private ImageModelRepository imageRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
 
     @Autowired
@@ -106,6 +116,47 @@ public class ImageModelService {
             throw new FileNotFoundException("File not found " + fileName, ex);
         }
     }
+
+
+
+    public ResponseEntity<Object> addProfileImage(MultipartFile image, long userId){
+        String randomFileName= UUID.randomUUID().toString();
+        String extension="."+ FilenameUtils.getExtension(image.getOriginalFilename());
+        String newFileName=randomFileName+extension;
+        String finalFileName= StringUtils.cleanPath(newFileName);
+
+        try {
+            if(finalFileName.contains("..")) return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+
+            if(!extension.matches(".png|.jpeg|.jpg")) {
+                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            }
+
+            File folder = new File(String.valueOf(this.imageStorageLocation));
+
+
+            checkFolderExists(finalFileName, folder);
+            Path targetLocation = this.imageStorageLocation.resolve(finalFileName);
+            Files.copy(image.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            String fileDownloadUri = "/api/files/downloadFile/" + finalFileName;
+
+            if (extension.matches(".png|.jpeg|.jpg")) {
+                ImageModel tmpFile = new ImageModel();
+                tmpFile.setName(finalFileName);
+                tmpFile.setUrl(fileDownloadUri);
+                Optional<User> existingUser=userRepository.findById(userId);
+                existingUser.get().setProfileImage(tmpFile);
+                return new ResponseEntity<>(imageRepository.save(tmpFile), HttpStatus.OK);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+
 
 
 }

@@ -48,4 +48,9 @@ public class ImageModelController {
 
     }
 
+    @PostMapping("/addProfileImage/{userId}")
+    public ResponseEntity<Object> addProfileImage(@RequestParam("file") MultipartFile image,@PathVariable long userId){
+        return imageModelService.addProfileImage(image,userId);
+    }
+
 }
