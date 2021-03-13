@@ -1,4 +1,4 @@
-package com.ozeeesoftware.forumrestapi.service;
+package com.ozeeesoftware.forumrestapi.service.user;
 
 import com.ozeeesoftware.forumrestapi.model.user.User;
 import org.springframework.http.ResponseEntity;

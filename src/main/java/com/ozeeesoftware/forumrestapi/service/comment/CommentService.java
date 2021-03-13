@@ -1,4 +1,4 @@
-package com.ozeeesoftware.forumrestapi.service;
+package com.ozeeesoftware.forumrestapi.service.comment;
 
 import com.ozeeesoftware.forumrestapi.exception.NotFoundByIdException;
 import com.ozeeesoftware.forumrestapi.model.comment.Comment;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CommentService implements ICommentService{
+public class CommentService implements ICommentService {
 
     @Autowired
     private PostRepository postRepository;

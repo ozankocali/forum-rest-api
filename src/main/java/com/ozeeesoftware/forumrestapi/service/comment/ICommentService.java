@@ -1,4 +1,4 @@
-package com.ozeeesoftware.forumrestapi.service;
+package com.ozeeesoftware.forumrestapi.service.comment;
 
 import com.ozeeesoftware.forumrestapi.model.comment.Comment;
 import org.springframework.http.ResponseEntity;
