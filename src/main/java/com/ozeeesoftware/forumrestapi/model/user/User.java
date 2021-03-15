@@ -12,7 +12,6 @@ import java.util.List;
 
 @Data
 @Entity
-@Where(clause = "deleted=false")
 @Table(name = "users",
         uniqueConstraints = {
         @UniqueConstraint(columnNames = "userName"),
@@ -20,10 +19,10 @@ import java.util.List;
         })
 public class User extends BaseModel {
 
-    @Column(nullable = false)
+    @Column
     private String userName;
 
-    @Column(nullable = false)
+    @Column
     private String email;
 
     @JsonIgnore
@@ -32,7 +31,7 @@ public class User extends BaseModel {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne
+    @OneToMany
     private List<Post> posts;
 
     @OneToOne

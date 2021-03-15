@@ -12,7 +12,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Where(clause = "deleted=false")
 @Table(name = "posts")
 public class Post extends BaseModel {
 
