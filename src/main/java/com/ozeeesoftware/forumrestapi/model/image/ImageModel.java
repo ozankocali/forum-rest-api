@@ -1,6 +1,7 @@
-package com.ozeeesoftware.forumrestapi.model;
+package com.ozeeesoftware.forumrestapi.model.image;
 
 
+import com.ozeeesoftware.forumrestapi.model.BaseModel;
 import lombok.Data;
 import org.hibernate.annotations.Where;
 
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "images")
-public class ImageModel extends BaseModel{
+public class ImageModel extends BaseModel {
 
     @Column(name = "imageName")
     private String name;

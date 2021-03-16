@@ -1,8 +1,8 @@
-package com.ozeeesoftware.forumrestapi.service;
+package com.ozeeesoftware.forumrestapi.service.image;
 
 import com.ozeeesoftware.forumrestapi.config.ImageStorageProperties;
 import com.ozeeesoftware.forumrestapi.exception.FileNotFoundException;
-import com.ozeeesoftware.forumrestapi.model.ImageModel;
+import com.ozeeesoftware.forumrestapi.model.image.ImageModel;
 import com.ozeeesoftware.forumrestapi.model.user.User;
 import com.ozeeesoftware.forumrestapi.repository.ImageModelRepository;
 import com.ozeeesoftware.forumrestapi.repository.PostRepository;

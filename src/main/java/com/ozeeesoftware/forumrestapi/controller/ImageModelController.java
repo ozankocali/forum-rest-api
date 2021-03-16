@@ -1,7 +1,7 @@
 package com.ozeeesoftware.forumrestapi.controller;
 
 
-import com.ozeeesoftware.forumrestapi.service.ImageModelService;
+import com.ozeeesoftware.forumrestapi.service.image.ImageModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

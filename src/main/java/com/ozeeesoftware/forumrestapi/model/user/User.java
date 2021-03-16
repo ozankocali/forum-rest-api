@@ -2,10 +2,13 @@ package com.ozeeesoftware.forumrestapi.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ozeeesoftware.forumrestapi.model.BaseModel;
-import com.ozeeesoftware.forumrestapi.model.ImageModel;
+import com.ozeeesoftware.forumrestapi.model.image.ImageModel;
 import com.ozeeesoftware.forumrestapi.model.post.Post;
+import lombok.AccessLevel;
 import lombok.Data;
-import org.hibernate.annotations.Where;
+import lombok.Setter;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,14 +22,23 @@ import java.util.List;
         })
 public class User extends BaseModel {
 
-    @Column
+    private String name;
+    private String surname;
+
+    @Column(nullable = false)
     private String userName;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
     @JsonIgnore
+    @Setter(AccessLevel.NONE)
     private String password;
+
+    private boolean resetPassword;
+
+    @JsonIgnore
+    private String verificationCode;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -36,5 +48,9 @@ public class User extends BaseModel {
 
     @OneToOne
     private ImageModel profileImage;
+
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
 
 }
