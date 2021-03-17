@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "posts")
+@Where(clause = "deleted=false")
 public class Post extends BaseModel {
 
     private String subject;
