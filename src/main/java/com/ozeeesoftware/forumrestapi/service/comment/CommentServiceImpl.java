@@ -3,7 +3,7 @@ package com.ozeeesoftware.forumrestapi.service.comment;
 import com.ozeeesoftware.forumrestapi.model.comment.Comment;
 import org.springframework.http.ResponseEntity;
 
-public interface ICommentService {
+public interface CommentServiceImpl {
 
     ResponseEntity createComment(long postId, Comment comment);
     ResponseEntity getCommentById(long commentId);

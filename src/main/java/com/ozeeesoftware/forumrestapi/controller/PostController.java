@@ -1,7 +1,7 @@
 package com.ozeeesoftware.forumrestapi.controller;
 
 import com.ozeeesoftware.forumrestapi.model.post.Post;
-import com.ozeeesoftware.forumrestapi.service.post.IPostService;
+import com.ozeeesoftware.forumrestapi.service.post.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private IPostService postService;
+    private PostServiceImpl postService;
 
     @PostMapping("/create")
     public ResponseEntity<Post> createPost(@RequestBody Post post){

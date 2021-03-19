@@ -4,7 +4,6 @@ import com.ozeeesoftware.forumrestapi.exception.NotFoundByIdException;
 import com.ozeeesoftware.forumrestapi.model.post.Post;
 import com.ozeeesoftware.forumrestapi.model.post.PostStatus;
 import com.ozeeesoftware.forumrestapi.repository.PostRepository;
-import com.ozeeesoftware.forumrestapi.service.post.IPostService;
 import com.ozeeesoftware.forumrestapi.util.NullAwareBeanUtilsBean;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PostService implements IPostService {
+public class PostService implements PostServiceImpl {
 
     @Autowired
     private PostRepository postRepository;

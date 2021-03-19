@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CommentService implements ICommentService {
+public class CommentService implements CommentServiceImpl {
 
     @Autowired
     private PostRepository postRepository;

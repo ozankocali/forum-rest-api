@@ -30,7 +30,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class ImageModelService {
+public class ImageModelService implements ImageModelServiceImpl{
 
     private final Path imageStorageLocation;
 
@@ -58,7 +58,7 @@ public class ImageModelService {
         }
     }
 
-
+    @Override
     public ResponseEntity<Object> storeImage(MultipartFile image){
         String randomFileName= UUID.randomUUID().toString();
         String extension="."+ FilenameUtils.getExtension(image.getOriginalFilename());
@@ -102,6 +102,7 @@ public class ImageModelService {
         }
     }
 
+    @Override
     public Resource loadFileAsResource(String fileName) {
         log.info("loadImageAsResource request came ");
         try {
@@ -118,7 +119,7 @@ public class ImageModelService {
     }
 
 
-
+    @Override
     public ResponseEntity<Object> addProfileImage(MultipartFile image, long userId){
         String randomFileName= UUID.randomUUID().toString();
         String extension="."+ FilenameUtils.getExtension(image.getOriginalFilename());

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.lang.reflect.InvocationTargetException;
 
-public interface IPostService {
+public interface PostServiceImpl {
 
     ResponseEntity createPost(Post post);
     ResponseEntity updatePost(Post post)throws InvocationTargetException, IllegalAccessException;

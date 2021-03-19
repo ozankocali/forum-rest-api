@@ -2,7 +2,7 @@ package com.ozeeesoftware.forumrestapi.controller;
 
 import com.ozeeesoftware.forumrestapi.model.comment.Comment;
 import com.ozeeesoftware.forumrestapi.model.comment.CommentDTO;
-import com.ozeeesoftware.forumrestapi.service.comment.ICommentService;
+import com.ozeeesoftware.forumrestapi.service.comment.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    private ICommentService commentService;
+    private CommentServiceImpl commentService;
 
     @PostMapping("/create/{postId}")
     public ResponseEntity<CommentDTO> createComment(@PathVariable long postId,@RequestBody Comment comment){
