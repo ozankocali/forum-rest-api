@@ -65,7 +65,7 @@ public class UserController {
         return service.list();
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','SHOP','DELIVERY')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable Long id) {
         return service.getById(id);

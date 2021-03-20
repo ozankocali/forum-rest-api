@@ -7,6 +7,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,12 +20,13 @@ public class ImageModelController {
     @Autowired
     private ImageModelService imageModelService;
 
-
+    @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @PostMapping("/upload")
     public ResponseEntity<Object> storeImage(@RequestParam("file") MultipartFile image){
         return imageModelService.storeImage(image);
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @GetMapping("/downloadImage/{fileName:.+}")
     public ResponseEntity<Resource> loadFileAsResource(@PathVariable String fileName, HttpServletRequest httpServletRequest){
 
@@ -48,6 +50,7 @@ public class ImageModelController {
 
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @PostMapping("/addProfileImage/{userId}")
     public ResponseEntity<Object> addProfileImage(@RequestParam("file") MultipartFile image,@PathVariable long userId){
         return imageModelService.addProfileImage(image,userId);
