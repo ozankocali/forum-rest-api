@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Where(clause = "deleted=false")
-@Table(name = "comments")
+@Table(name = "answers")
 public class Answer extends BaseModel {
 
     private String answer;
