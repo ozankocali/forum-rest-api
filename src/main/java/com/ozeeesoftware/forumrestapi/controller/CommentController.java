@@ -2,7 +2,7 @@ package com.ozeeesoftware.forumrestapi.controller;
 
 import com.ozeeesoftware.forumrestapi.model.comment.Comment;
 import com.ozeeesoftware.forumrestapi.model.comment.CommentDTO;
-import com.ozeeesoftware.forumrestapi.service.comment.CommentServiceImpl;
+import com.ozeeesoftware.forumrestapi.service.comment.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,7 +15,7 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    private CommentServiceImpl commentService;
+    private CommentService commentService;
 
     @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @PostMapping("/create/{postId}")

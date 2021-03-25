@@ -1,7 +1,7 @@
 package com.ozeeesoftware.forumrestapi.controller;
 
 import com.ozeeesoftware.forumrestapi.model.post.Post;
-import com.ozeeesoftware.forumrestapi.service.post.PostServiceImpl;
+import com.ozeeesoftware.forumrestapi.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,7 +15,7 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private PostServiceImpl postService;
+    private PostService postService;
 
     @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @PostMapping("/create")

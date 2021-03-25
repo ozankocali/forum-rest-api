@@ -2,7 +2,7 @@ package com.ozeeesoftware.forumrestapi.controller;
 
 import com.ozeeesoftware.forumrestapi.model.answer.Answer;
 import com.ozeeesoftware.forumrestapi.model.answer.AnswerDTO;
-import com.ozeeesoftware.forumrestapi.service.answer.AnswerServiceImpl;
+import com.ozeeesoftware.forumrestapi.service.answer.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,7 +15,7 @@ import java.util.List;
 public class AnswerController {
 
     @Autowired
-    private AnswerServiceImpl answerService;
+    private AnswerService answerService;
 
     @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @PostMapping("/create/{commentId}")

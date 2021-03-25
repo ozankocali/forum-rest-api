@@ -115,12 +115,12 @@ public class UserService {
 
         User existingUsername = repo.findByUsername(user.getUsername());
         if (existingUsername != null) {
-            return new ResponseEntity<>(Message.USERNAME_ALREADY_EXISTS, HttpStatus.CONFLICT);
+            return new ResponseEntity(Message.USERNAME_ALREADY_EXISTS, HttpStatus.CONFLICT);
         }
 
         User existingEmail = repo.findByEmail(user.getEmail());
         if (existingEmail != null) {
-            return new ResponseEntity<>(Message.EMAIL_ALREADY_EXISTS, HttpStatus.CONFLICT);
+            return new ResponseEntity(Message.EMAIL_ALREADY_EXISTS, HttpStatus.CONFLICT);
         }
 
         // assign user role
@@ -133,9 +133,9 @@ public class UserService {
 
         User savedUser = repo.save(entity);
         if (savedUser != null) {
-            return new ResponseEntity<>(savedUser, HttpStatus.OK);
+            return new ResponseEntity(savedUser, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(Message.SYSTEM_ERROR, HttpStatus.CONFLICT);
+            return new ResponseEntity(Message.SYSTEM_ERROR, HttpStatus.CONFLICT);
         }
     }
 
@@ -143,7 +143,7 @@ public class UserService {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    ResponseEntity deleteById(BaseModel entity, JpaRepository repo) {
+    ResponseEntity<User> deleteById(BaseModel entity, JpaRepository repo) {
         if (entity != null) {
             entity.setDeleted(true);
             repo.save(entity);
@@ -154,7 +154,7 @@ public class UserService {
     }
 
 
-    public ResponseEntity getUserCount() {
+    public ResponseEntity<Long> getUserCount() {
         return new ResponseEntity<>(repo.count(), HttpStatus.OK);
     }
 

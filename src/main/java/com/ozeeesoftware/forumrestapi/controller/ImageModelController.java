@@ -1,7 +1,7 @@
 package com.ozeeesoftware.forumrestapi.controller;
 
 
-import com.ozeeesoftware.forumrestapi.service.image.ImageModelService;
+import com.ozeeesoftware.forumrestapi.service.image.ImageModelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ImageModelController {
 
     @Autowired
-    private ImageModelService imageModelService;
+    private ImageModelServiceImpl imageModelService;
 
     @PreAuthorize("hasAnyAuthority('ADMIN','MODERATOR','USER')")
     @PostMapping("/upload")
