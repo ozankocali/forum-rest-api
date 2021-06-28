@@ -10,6 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class HttpResponse {
+
     private int httpStatusCode;
 
     private HttpStatus httpStatus;
@@ -28,4 +29,5 @@ public class HttpResponse {
         this.message = message;
         this.timeStamp = new Date();
     }
+
 }
